@@ -1,0 +1,25 @@
+services:
+  discovery-server:
+    image: dockerhub213/discovery-server:latest
+    container_name: discovery-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+  api-gateway:
+    image: dockerhub213/api-gateway-dep:latest
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+    depends_on:
+      - discovery-server
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    name: microservices-network
+    driver: bridge
