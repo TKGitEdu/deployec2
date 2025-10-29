@@ -11,5 +11,6 @@ docker compose -f docker-compose.prod.yml start
 
 # 4. Dừng + DỌN SẠCH (deploy mới)
 docker compose -f docker-compose.prod.yml down
+
 # 5. Xoá toàn bộ container cũ, image cũ (tuỳ chọn nếu muốn pull lại)
 docker system prune -af
