@@ -6,7 +6,9 @@ services:
       - "8761:8761"
     networks:
       - microservices-network
-
+    environment:
+      - JAVA_TOOL_OPTIONS=--add-opens=java.base/jdk.internal.platform=ALL-UNNAMED
+      - MANAGEMENT_METRICS_EXPORT_ENABLED=false
   api-gateway:
     image: dockerhub213/api-gateway-dep:latest
     container_name: api-gateway
